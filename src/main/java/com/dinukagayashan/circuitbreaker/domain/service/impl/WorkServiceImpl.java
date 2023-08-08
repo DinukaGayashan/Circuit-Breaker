@@ -11,7 +11,7 @@ public class WorkServiceImpl implements WorkService {
     @Autowired
     UserService userService;
 
-    public void getUsers(){
-        System.out.println(userService.getUsers());
+    public String getUsers() throws Exception {
+        return userService.getUsers();
     }
 }
