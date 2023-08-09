@@ -2,6 +2,9 @@ service:
   user:
     url: http://localhost:8081/
     endpoint: users
+  cryptocurrency:
+    url: http://localhost:8082/
+    endpoint: cryptocurrency
 
 management:
   health:
@@ -17,8 +20,8 @@ management:
 
 resilience4j:
   circuitbreaker:
-    instances:
-      userService:
+    configs:
+      default:
         registerHealthIndicator: true
         eventConsumerBufferSize: 10
         failureRateThreshold: 50
@@ -28,3 +31,9 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
+    instances:
+      userService:
+        baseConfig: default
+        failureRateThreshold: 20
+      cryptocurrencyService:
+        baseConfig: default

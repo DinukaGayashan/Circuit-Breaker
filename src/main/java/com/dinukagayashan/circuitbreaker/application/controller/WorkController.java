@@ -15,7 +15,17 @@ public class WorkController {
     WorkService workService;
 
     @GetMapping
-    public ResponseEntity<String> getUser() throws Exception {
+    public ResponseEntity<String> getWork() throws Exception{
+        return ResponseEntity.ok(workService.getUsers()+"\n"+workService.getCryptocurrencies());
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<String> getUsers() throws Exception{
         return ResponseEntity.ok(workService.getUsers());
+    }
+
+    @GetMapping("/cryptocurrencies")
+    public ResponseEntity<String> getCryptocurrencies() throws Exception{
+        return ResponseEntity.ok(workService.getCryptocurrencies());
     }
 }
