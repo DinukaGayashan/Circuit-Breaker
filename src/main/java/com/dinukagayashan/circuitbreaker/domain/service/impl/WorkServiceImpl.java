@@ -15,11 +15,11 @@ public class WorkServiceImpl implements WorkService {
     @Autowired
     CryptocurrencyService cryptocurrencyService;
 
-    public String getUsers() throws Exception{
+    public String getUsers() throws Exception {
         return userService.getUsers();
     }
 
-    public String getCryptocurrencies() throws Exception{
+    public String getCryptocurrencies() throws Exception {
         return cryptocurrencyService.getCryptocurrencies();
     }
 }

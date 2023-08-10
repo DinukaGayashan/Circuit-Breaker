@@ -21,9 +21,7 @@ public class UserServiceImpl implements UserService {
     @CircuitBreaker(name = "userService", fallbackMethod = "returnWait")
     public String getUsers() throws Exception {
         try {
-            return restTemplate.getForObject(
-                    userUrl + userEndpoint + "/all",
-                    String.class);
+            return restTemplate.getForObject(userUrl + userEndpoint + "/all", String.class);
         } catch (Exception exception) {
             throw new Exception(exception.getMessage());
         }

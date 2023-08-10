@@ -21,15 +21,13 @@ public class CryptocurrencyServiceImpl implements CryptocurrencyService {
     @CircuitBreaker(name = "cryptocurrencyService", fallbackMethod = "returnWait")
     public String getCryptocurrencies() throws Exception {
         try {
-            return restTemplate.getForObject(
-                    cryptocurrencyUrl + cryptocurrencyEndpoint + "/get/all",
-                    String.class);
+            return restTemplate.getForObject(cryptocurrencyUrl + cryptocurrencyEndpoint + "/get/all", String.class);
         } catch (Exception exception) {
             throw new Exception(exception.getMessage());
         }
     }
 
-    public String returnWait(Exception exception){
+    public String returnWait(Exception exception) {
         return "Please Wait";
     }
 }

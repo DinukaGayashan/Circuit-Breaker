@@ -13,7 +13,8 @@ Circuit breaker pattern works on three states.
 2. Open State: If circuit breaker detects a predefined threshold of failures such as consecutive failed requests or high latency, it transitions into the open state. In this state, the circuit breaker prevents requests from being sent to the troubled service, effectively breaking the circuit to that service.
 3. Half-Open State: After a predefined period of time or under certain conditions, the circuit breaker transitions into a half-open state. During this state, a limited number of test requests may be allowed to pass through to the troubled service. If these test requests are successful, the circuit breaker transitions back to the closed state, assuming the service has recovered. If the test requests still fail, the circuit breaker remains in the open state.
 
-![circuit-breaker-states.png](assets/circuit-breaker-states.png)<br>
+![circuit-breaker-states.png](assets/circuit-breaker-states.png)
+<br>
 [image-source](https://medium.com/javarevisited/what-is-circuit-breaker-in-microservices-a94f95f5e5ae)
 
 <br>
