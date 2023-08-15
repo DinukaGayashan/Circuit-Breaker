@@ -19,7 +19,32 @@ management:
       show-details: always
 
 resilience4j:
+  retry:
+    retryAspectOrder: 2
+    configs:
+      default:
+        maxAttempts: 3
+        waitDuration: 2s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+        retryExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+        ignoreExceptions:
+          - java.io.IOException
+    instances:
+      userService:
+        baseConfig: default
+      cryptocurrencyService:
+        baseConfig: default
+  # userService is configured with resilience4j retrying mechanism, which is not asynchronous.
+  # cryptocurrencyService is configured with retrying asynchronously, but returns with FutureTask response.
+
+  # sample response:
+  #  Please Wait
+  #  java.util.concurrent.FutureTask@5a96c6f0[Not completed, task = org.springframework.aop.interceptor.AsyncExecutionInterceptor$$Lambda$1116/0x00000008015376f8@624b2bf]
+
   circuitbreaker:
+    circuitBreakerAspectOrder: 1
     configs:
       default:
         registerHealthIndicator: true
@@ -34,6 +59,6 @@ resilience4j:
     instances:
       userService:
         baseConfig: default
-        failureRateThreshold: 20
+        failureRateThreshold: 40
       cryptocurrencyService:
         baseConfig: default

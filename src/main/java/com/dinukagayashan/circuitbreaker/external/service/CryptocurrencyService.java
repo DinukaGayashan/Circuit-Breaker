@@ -1,5 +1,7 @@
 package com.dinukagayashan.circuitbreaker.external.service;
 
+import java.util.concurrent.Future;
+
 public interface CryptocurrencyService {
-    String getCryptocurrencies() throws Exception;
+    Future<String> getCryptocurrencies() throws Exception;
 }

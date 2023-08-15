@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.Future;
+
 @RestController
 @RequestMapping("work")
 public class WorkController {
@@ -25,7 +27,7 @@ public class WorkController {
     }
 
     @GetMapping("/cryptocurrencies")
-    public ResponseEntity<String> getCryptocurrencies() throws Exception {
+    public ResponseEntity<Future<String>> getCryptocurrencies() throws Exception {
         return ResponseEntity.ok(workService.getCryptocurrencies());
     }
 }
